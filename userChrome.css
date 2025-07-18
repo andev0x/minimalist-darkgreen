@@ -1,0 +1,228 @@
+/*
+  Firefox UI Customization
+  Author: anvndev
+  Theme: Minimal, Dark Green
+*/
+
+/* ========== COLOR VARIABLES ========== */
+:root {
+  --color-green-primary: #0f3d0f;
+  --color-green-secondary: #1a5121;
+  --color-tab-hover: rgba(15, 61, 15, 0.1);
+  --tab-border-radius: 6px;
+  --navbar-width: 43;
+  --tabs-height: 25;
+  --tabs-border: 8;
+  --navbar-height-small: calc(var(--tabs-height) + var(--tabs-border));
+}
+
+/* ========== UI ELEMENT VISIBILITY ========== */
+
+#PanelUI-button,
+.titlebar-buttonbox-container,
+#back-button,
+#forward-button,
+#alltabs-button,
+#unified-extensions-button,
+#identity-permission-box,
+#star-button-box,
+#identity-icon-box,
+#picture-in-picture-button,
+#tracking-protection-icon-container,
+#reader-mode-button,
+#translations-button,
+#urlbar .search-one-offs {
+  display: none !important;
+}
+
+#identity-box.extensionPage #identity-icon-label {
+  visibility: collapse !important;
+}
+
+#unified-extensions-button {
+  position: absolute !important;
+  opacity: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+}
+
+/* ========== RESPONSIVE NAVBAR ========== */
+
+@media screen and (min-width:1325px) {
+  :root #nav-bar {
+    margin-top: calc(var(--tabs-height) * -1px - var(--tabs-border) * 1px) !important;
+    height: calc(var(--tabs-height) * 1px + var(--tabs-border) * 1px);
+  }
+
+  #TabsToolbar {
+    margin-left: calc(1325px / 100 * var(--navbar-width)) !important;
+  }
+
+  #nav-bar {
+    margin-right: calc(100vw - (1325px / 100 * var(--navbar-width))) !important;
+    vertical-align: middle !important;
+  }
+}
+
+@media screen and (min-width:950px) and (max-width:1324px) {
+  :root #nav-bar {
+    margin-top: calc(var(--tabs-height) * -1px - var(--tabs-border) * 1px) !important;
+    height: calc(var(--tabs-height) * 1px + var(--tabs-border) * 1px);
+  }
+
+  #TabsToolbar {
+    margin-left: calc(var(--navbar-width) * 1vw) !important;
+  }
+
+  #nav-bar {
+    margin-right: calc(100vw - (var(--navbar-width) * 1vw)) !important;
+    vertical-align: middle !important;
+  }
+
+  #TabsToolbar,
+  #nav-bar {
+    transition: margin-top .25s !important;
+  }
+}
+
+@media screen and (max-width:949px) {
+  :root #nav-bar {
+    padding: 0 5px !important;
+    height: calc(var(--navbar-height-small) * 1px) !important;
+  }
+
+  #TabsToolbar,
+  #nav-bar {
+    transition: margin-top .25s !important;
+  }
+}
+
+/* ========== TOOLBAR APPEARANCE ========== */
+
+toolbarspring {
+  display: none !important;
+}
+
+#nav-bar,
+#PersonalToolbar {
+  background-color: transparent !important;
+  background-image: none !important;
+  box-shadow: none !important;
+  margin-left: 3px;
+}
+
+.tab-background,
+.tab-stack {
+  min-height: calc(var(--tabs-height) * 1px) !important;
+}
+
+#urlbar-background {
+  border: none !important;
+  outline: none !important;
+  transition: .15s !important;
+}
+
+#urlbar:not(:hover):not([breakout][breakout-extend])>#urlbar-background {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+#navigator-toolbox {
+  border: none !important;
+}
+
+#navigator-toolbox-background:-moz-window-inactive {
+  filter: contrast(90%);
+}
+
+#fullscreen-warning {
+  border: none !important;
+  background: -moz-Dialog !important;
+}
+
+/* ========== TABS ========== */
+
+.tabbrowser-tab:not(:hover):not(multiselected),
+.tab-background {
+  transition: 0.5s !important;
+  filter: opacity(50%) !important;
+  border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important;
+}
+
+#TabsToolbar #firefox-view-button[open]>.toolbarbutton-icon,
+.tabbrowser-tab:is([visuallyselected], [multiselected]) {
+  background: none !important;
+  filter: none !important;
+}
+
+.tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background {
+  background: none !important;
+  box-shadow: none !important;
+  border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important;
+}
+
+.tabbrowser-tab:hover .tab-background {
+  background: var(--color-tab-hover) !important;
+}
+
+/* Remove gap after pinned tabs */
+#tabbrowser-tabs[haspinnedtabs]:not([positionpinnedtabs])>#tabbrowser-arrowscrollbox>.tabbrowser-tab:nth-child(1 of :not([pinned], [hidden])) {
+  margin-inline-start: 0 !important;
+}
+
+/* Favicon always visible */
+.tab-icon-image:not([pinned]) {
+  opacity: 1 !important;
+}
+
+/* Speaker icon styles */
+.tab-icon-overlay:not([crashed]),
+.tab-icon-overlay[pinned][crashed][selected] {
+  top: 5px !important;
+  z-index: 1 !important;
+  padding: 1.5px !important;
+  inset-inline-end: -8px !important;
+  width: 16px !important;
+  height: 16px !important;
+  border-radius: 10px !important;
+}
+
+.tabbrowser-tab:not([image]) .tab-icon-overlay:not([pinned], [sharing], [crashed]) {
+  top: 0 !important;
+  padding: 0 !important;
+  margin-inline-end: 5.5px !important;
+  inset-inline-end: 0 !important;
+}
+
+.tab-icon-overlay:not([sharing], [crashed]):is([soundplaying], [muted], [activemedia-blocked]) {
+  background: var(--color-green-primary) !important;
+  stroke: var(--color-green-primary) !important;
+  fill-opacity: 0.8 !important;
+  color: currentColor !important;
+  margin-right: 15px !important;
+  opacity: 1 !important;
+}
+
+/* ========== CLOSE BUTTON ========== */
+
+.tabbrowser-tab:not(:hover) .tab-close-button {
+  opacity: 0 !important;
+}
+
+.tab-close-button[selected]:not(:hover) {
+  opacity: 45% !important;
+}
+
+.tabbrowser-tab:hover .tab-close-button,
+.tab-close-button:hover,
+.tab-close-button[selected]:hover {
+  opacity: 100% !important;
+  cursor: pointer;
+}
+
+.tab-close-button,
+.tab-close-button[selected] {
+  transition: 0.3s !important;
+  background: none !important;
+  display: -moz-box !important;
+}
