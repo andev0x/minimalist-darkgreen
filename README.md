@@ -45,11 +45,11 @@ Close all Firefox windows and reopen the browser to apply the changes.
 
 ## Customization Details
 
-- **userChrome.css:**  
+- **userChrome.css:**
   Customizes the browser’s chrome (UI elements like tabs, toolbars, menus) to use a dark green color scheme, reduce visual noise, and streamline the interface.
-- **userContent.css:**  
+- **userContent.css:**
   Applies styles to web content, ensuring a consistent look on internal pages (like new tab, about: pages) and improving readability.
-- **wallpaper.png:**  
+- **wallpaper.png:**
   Can be set as a background for the new tab or other browser areas, depending on your userChrome/userContent settings.
 
 ## Screenshots
@@ -64,6 +64,10 @@ See the `docs/` folder for example screenshots (`p1.png`, `p2.png`, `p3.png`).
 
 ![Minimalist Dark Green Illustration 3](docs/p3.png)
 
+### Live Demo
+
+![Minimalist Dark Green Theme Demo](docs/p4.gif)
+
 ## Troubleshooting
 
 - If the theme does not apply, double-check that `toolkit.legacyUserProfileCustomizations.stylesheets` is set to `true` and that the files are in the correct `chrome` folder.
@@ -76,4 +80,4 @@ See the `docs/` folder for example screenshots (`p1.png`, `p2.png`, `p3.png`).
 
 ## License
 
-This project is licensed under the MIT License. You are free to use, modify, and share this theme. See the [LICENSE](LICENSE) file for details. 
+This project is licensed under the MIT License. You are free to use, modify, and share this theme. See the [LICENSE](LICENSE) file for details.
