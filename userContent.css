@@ -1,0 +1,82 @@
+/*
+  Firefox UI Customization
+  Author: anvndev (andev0x)
+  Theme: Minimalist, Dark Green
+*/
+
+/* ========== USER CONTENT THEME ========== */
+:root {
+  --uc-bg-green-dark: #0f3d0f;
+  --uc-bg-green-mid: #1a5121;
+  --uc-bg-green-light: #2e7d32;
+  --uc-bg-gradient: linear-gradient(
+    135deg,
+    var(--uc-bg-green-dark) 0%,
+    var(--uc-bg-green-mid) 60%,
+    var(--uc-bg-green-light) 100%
+  );
+  --uc-bg-image: url("components/wallpaper.png"); /* Change or comment out if not needed */
+  --uc-bg-image-opacity: 0.18; /* Adjust image overlay strength */
+  --uc-gradient-opacity: 0.7; /* Opacity of the green gradient overlay */
+  --uc-border-radius: 24px;
+}
+
+@-moz-document url(chrome://browser/content/browser.xul),
+url(about:newtab),
+url(about:home),
+url(about:privatebrowsing),
+url(about:blank) {
+  body {
+    background: transparent !important;
+    position: relative !important;
+    min-height: 100vh !important;
+    border-radius: var(--uc-border-radius) !important;
+    --newtab-background-color: transparent !important;
+    --newtab-background-color-secondary: transparent !important;
+  }
+  /* Overlay image (optional) */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    background: var(--uc-bg-image);
+    background-size: cover;
+    background-position: center;
+    opacity: var(--uc-bg-image-opacity);
+    border-radius: var(--uc-border-radius);
+    transition: opacity 0.3s;
+  }
+  /* Green gradient overlay as filter */
+  body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background: var(--uc-bg-gradient);
+    opacity: var(--uc-gradient-opacity);
+    mix-blend-mode: multiply;
+    border-radius: var(--uc-border-radius);
+    transition: opacity 0.3s;
+  }
+  /* Hide logo and search suggestion for minimalism */
+  .logo-and-wordmark,
+  #searchSuggestionTable {
+    opacity: 0 !important;
+  }
+  .search-inner-wrapper {
+    border-radius: var(--uc-border-radius) !important;
+    border: double 3px transparent !important;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.18), rgba(0, 0, 0, 0.18)),
+      linear-gradient(90deg, #2e7d32, #1a5121, #0f3d0f, #1a5121, #2e7d32) !important;
+    background-origin: border-box !important;
+    background-clip: content-box, border-box !important;
+    overflow: hidden !important;
+  }
+  #newtab-search-text {
+    opacity: 0.7 !important;
+    border-radius: var(--uc-border-radius) !important;
+  }
+}
