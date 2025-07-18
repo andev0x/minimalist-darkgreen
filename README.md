@@ -54,13 +54,15 @@ Close all Firefox windows and reopen the browser to apply the changes.
 
 ## Screenshots
 
-See the `docs/` folder for example screenshots (`p1.png`, `p2.png`).
+See the `docs/` folder for example screenshots (`p1.png`, `p2.png`, `p3.png`).
 
 ### Illustrations
 
 ![Minimalist Dark Green Illustration 1](docs/p1.png)
 
 ![Minimalist Dark Green Illustration 2](docs/p2.png)
+
+![Minimalist Dark Green Illustration 3](docs/p3.png)
 
 ## Troubleshooting
 
