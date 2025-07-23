@@ -1,22 +1,43 @@
 /*
   Firefox UI Customization
-  Author: anvndev (andev0x)
-  Theme: Minimalist, Dark Green
+  Author: anvndev (andev0x) - Modified for semi-transparency & blur
+  Theme: Minimalist, Semi-Transparent Dark Green, Blurred, Compact
 */
 
 /* ========== COLOR VARIABLES ========== */
 :root {
-  --color-green-primary: #0f3d0f;
-  --color-green-secondary: #1a5121;
+  --color-green-primary: #06402B;
+  --color-green-secondary: #0A5F41;
   --color-green-accent: #093f0cab;
   --color-dot-accent: #2df386bf;
-  --color-tab-hover: rgba(15, 61, 15, 0.1);
+  --color-tab-hover: rgba(6, 64, 43, 0.3);
+  /* Using the new primary color with slightly more visibility */
   --color-tab-ambient: 0 0 0 3px #2e7d32, 0 2px 16px 0 #1a5121;
   --tab-border-radius: 10px;
   --navbar-width: 43;
-  --tabs-height: 32;
+  --tabs-height: 30;
+  /* Reduced from 35 for a smaller tab bar */
   --tabs-border: 8;
   --navbar-height-small: calc(var(--tabs-height) + var(--tabs-border));
+}
+
+/* ========== SEMI-TRANSPARENCY & BLUR RULES (UPDATED) ========== */
+/* These rules make the window background semi-transparent and apply a blur effect. */
+/* IMPORTANT: For the blur effect to work, you must enable the following flags in about:config: */
+/* 1. layout.css.backdrop-filter.enabled = true */
+/* 2. gfx.webrender.all = true */
+#main-window,
+#navigator-toolbox {
+  background: #06402BB3 !important;
+  /* Main color with ~70% opacity */
+  -moz-appearance: none !important;
+  backdrop-filter: blur(10px) !important;
+  /* This line adds the blur effect. You can change the 10px value. */
+}
+
+/* Remove background from the browser content area when a new tab is opened */
+body#newtab-customize-overlay {
+  background: transparent !important;
 }
 
 /* ========== UI ELEMENT VISIBILITY ========== */
@@ -107,7 +128,8 @@ toolbarspring {
 }
 
 #nav-bar,
-#PersonalToolbar {
+#PersonalToolbar,
+#TabsToolbar {
   background-color: transparent !important;
   background-image: none !important;
   box-shadow: none !important;
@@ -123,6 +145,8 @@ toolbarspring {
   border: none !important;
   outline: none !important;
   transition: .15s !important;
+  background-color: rgba(255, 255, 255, 0.1) !important;
+  /* Add a subtle background to the URL bar for visibility */
 }
 
 #urlbar:not(:hover):not([breakout][breakout-extend])>#urlbar-background {
@@ -154,7 +178,8 @@ toolbarspring {
 
 /* Remove ambient color and background for active tab */
 .tabbrowser-tab:is([visuallyselected], [multiselected]) .tab-background {
-  background: none !important;
+  background: var(--color-tab-hover) !important;
+  /* Give active tab a slight background */
   box-shadow: none !important;
   border-radius: var(--tab-border-radius) var(--tab-border-radius) 0 0 !important;
   filter: none !important;
@@ -175,6 +200,8 @@ toolbarspring {
 
 .tabbrowser-tab:hover .tab-background {
   background: var(--color-tab-hover) !important;
+  filter: opacity(100%) !important;
+  /* Make sure hover is fully opaque */
 }
 
 /* Remove gap after pinned tabs */
