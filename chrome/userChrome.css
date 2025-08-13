@@ -15,8 +15,7 @@
   --color-tab-ambient: 0 0 0 3px #2e7d32, 0 2px 16px 0 #1a5121;
   --tab-border-radius: 10px;
   --navbar-width: 43;
-  --tabs-height: 30;
-  /* Reduced from 35 for a smaller tab bar */
+  --tabs-height: 42;
   --tabs-border: 8;
   --navbar-height-small: calc(var(--tabs-height) + var(--tabs-border));
 }
